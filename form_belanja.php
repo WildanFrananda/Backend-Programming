@@ -69,19 +69,7 @@
   </div>
 </div>
 </form>
-<?php 
-$customer = $_POST['customer'];
-$jumlah = $_POST['jumlah'];
-$produk = $_POST['produk'];
-$proses = $_POST['proses'];
 
-echo 'Customer: '.$customer.'<br/>';
-echo 'Jumlah Beli: '.$jumlah.'<br/>';
-
-foreach ($_POST['produk'] as $key => $value) {
-  echo 'Total Belanja: Rp '.number_format($value * $jumlah,0,',', '.').'<br/>';
-}
-?>
 <!-- daftar harga -->
 <div class="card" style="width : 400px">
   <div class="row align-items-start">
@@ -100,5 +88,18 @@ foreach ($_POST['produk'] as $key => $value) {
     </div>
   </div>
 </div>
+<?php 
+$customer = $_POST['customer'];
+$jumlah = $_POST['jumlah'];
+$produk = $_POST['produk'];
+$proses = $_POST['proses'];
+
+echo 'Customer: '.$customer.'<br/>';
+echo 'Jumlah Beli: '.$jumlah.'<br/>';
+
+foreach ($_POST['produk'] as $key => $value) {
+  echo 'Total Belanja: Rp '.number_format($value * $jumlah,0,',', '.').'<br/>';
+}
+?>
 </body>
 </html>
