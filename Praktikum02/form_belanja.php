@@ -98,7 +98,7 @@ echo 'Customer: '.$customer.'<br/>';
 echo 'Jumlah Beli: '.$jumlah.'<br/>';
 
 foreach ($_POST['produk'] as $key => $value) {
-  echo 'Total Belanja: Rp '.number_format($value * $jumlah,0,',', '.').'<br/>';
+  echo 'Total Belanja: Rp '.number_format($value * $jumlah,0,',','.').'<br/>';
 }
 ?>
 </body>
