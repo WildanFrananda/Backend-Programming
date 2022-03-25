@@ -1,13 +1,17 @@
 <?php
 class Persegipanjang {
-    public $panjang;
-    public $lebar;
+    private $panjang;
+    private $lebar;
 
+    function __construct($p, $l) {
+        $this->panjang = $p;
+        $this->lebar = $l;
+    }
     function getLuas() {
-        return $this->luas = $this->panjang * $this->lebar;
+        return $this->panjang * $this->lebar;
     }
     function getKeliling() {
-        return $this->keliling = 2 * ($this->panjang + $this->lebar);
+        return 2 * ($this->panjang + $this->lebar);
     }
 }
 ?>
