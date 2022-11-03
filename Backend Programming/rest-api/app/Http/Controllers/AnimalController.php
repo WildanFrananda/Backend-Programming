@@ -8,11 +8,11 @@ class AnimalController extends Controller {
     public $animals = ["Kucing", "Ayam", "Ikan"];
 
     public function index() {
-    echo "Menampilkan Data animals: <br>";
-    foreach($this->animals as $hewan) {
-        echo '-' . $hewan . '<br>';
+        echo "Menampilkan Data animals: <br>";
+        foreach($this->animals as $hewan) {
+            echo '-' . $hewan . '<br>';
+        }
     }
-}
 
     public function store(Request $request) {
         echo "Menambahkan data animals - ";
@@ -40,3 +40,4 @@ class AnimalController extends Controller {
         }
     }
 }
+?>
