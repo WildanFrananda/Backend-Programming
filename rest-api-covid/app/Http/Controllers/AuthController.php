@@ -60,3 +60,10 @@ class AuthController extends Controller
         }
     }
 }
+
+/*
+    Nama    : Wildan Frananda
+    NIM     : 0110221345
+    Jurusan : Teknik Informatika
+    Rombel  : 3TI15
+*/

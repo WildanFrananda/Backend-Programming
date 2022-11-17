@@ -222,3 +222,10 @@ class PatientsController extends Controller
         return response()->json($data, 200);
     }
 }
+
+/* 
+    Nama    : Wildan Frananda
+    NIM     : 0110221345
+    Jurusan : Teknik Informatika
+    Rombel  : 3TI15
+*/
