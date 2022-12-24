@@ -4,10 +4,10 @@ const StudentController = require("../controllers/StudentController")
 // Import express
 const express = require("express")
 
-// Membuat object router
+// Create object router
 const router = express.Router()
 
-// Routing untuk students
+// Routing students
 router.get("/students", StudentController.index)
 router.post("/students", StudentController.store)
 router.put("/students/:id", StudentController.update)

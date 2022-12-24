@@ -1,28 +1,30 @@
-// Import data students dari folder data/students.js
-const students = require("../data/students")
+// Import model student
+const Student = require("../models/Student")
 
-// Membuat class StudentController
+// Create class StudentController
 class StudentController {
-    // Membuat method index
-    index(req, res) {
-        // Tampilkan data students
+    // Create method index
+    async index(req, res) {
+        // Get all data students
+        const students = await Student.all()
+
+        // Show all data students
         const data = {
-            message: "Menampilkan data students",
+            message: "Show all students data",
             data: students
         }
 
         res.json(data)
     }
 
-    // Membuat method store
-    store(req, res) {
-        const {nama} = req.body
+    // Create store method
+    async store(req, res) {
+        // Store data students
+        const students = await Student.create(req.body)
 
-        // Tambahkan data students baru
-        students.push(nama)
-
+        // Student stored status
         const data = {
-            message: `Menambahkan data students: ${nama}`,
+            message: "Create data students",
             data: students
         }
 
@@ -35,12 +37,9 @@ class StudentController {
         const {id} = req.params
         const {nama} = req.body
 
-        // update data students
-        students[id] = nama
-
         const data = {
             message: `Mengedit data students dengan id ${id}, nama ${nama}`,
-            data: students
+            data: []
         }
         
         res.json(data)
@@ -50,12 +49,9 @@ class StudentController {
     destroy(req, res) {
         const {id} = req.params
 
-        // hapus data students
-        students.splice(id, 1)
-
         const data = {
             message: `Menghapus data students dengan id ${id}`,
-            data: students
+            data: []
         }
         
         res.json(data)
