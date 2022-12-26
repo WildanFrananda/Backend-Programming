@@ -9,56 +9,119 @@ class StudentController {
         const students = await Student.all()
 
         // Show all data students
-        const data = {
-            message: "Show all students data",
-            data: students
+        if(students.length > 0) {
+            const data = {
+                message: "Show all data students",
+                data: students
+            }
+            res.status(200).json(data)
         }
-
-        res.json(data)
+        else {
+            const data = {
+                message: "Students is empty"
+            }
+            res.status(404).json(data)
+        }
     }
 
     // Create store method
     async store(req, res) {
         // Store data students
-        const students = await Student.create(req.body)
+        const {nama, nim, email, jurusan} = req.body
+        /*
+        * Create validation
+        * - Handle if data incomplete
+        */
+        if(!nama || !nim || !email || !jurusan) {
+            const data = {
+                message: "Data incomplete"
+            }
+            return res.status(422).json(data)
+        }
 
-        // Student stored status
+        // Else
+        const student = await Student.create(req.body)
         const data = {
             message: "Create data students",
-            data: students
+            data: student
         }
-
-        res.json(data)
+        return res.status(201).json(data)
     }
 
-
-    // Membuat method update
-    update(req, res) {
+    // Create method update
+    async update(req, res) {
         const {id} = req.params
-        const {nama} = req.body
+        // Search data by id
+        const student = await Student.find(id)
 
-        const data = {
-            message: `Mengedit data students dengan id ${id}, nama ${nama}`,
-            data: []
+        // Update data
+        if(!student) {
+            const data = {
+                message: "Data students not found"
+            }
+            return res.status(404).json(data)
         }
-        
-        res.json(data)
+        const updatedStudent = await Student.update(id, req.body)
+        const data = {
+            message: "Update data students",
+            data: updatedStudent
+        }
+        return res.status(200).json(data)
     }
 
-    // Membuat method destroy
-    destroy(req, res) {
+    // Create method destroy
+    async destroy(req, res) {
         const {id} = req.params
+        // Search data by id
+        const student = await Student.find(id)
 
-        const data = {
-            message: `Menghapus data students dengan id ${id}`,
-            data: []
+        // Delete data
+        if(!student) {
+            const data = {
+                message: "Data students not found"
+            }
+            return res.status(404).json(data)
         }
-        
-        res.json(data)
+        await Student.delete(id)
+        const data = {
+            message: "Delete data students"
+        }
+        return res.status(200).json(data)
+    }
+
+    // Create method show
+    async show(req, res) {
+        try {
+            const {id} = req.params
+            // Search data by id
+            const student = await Student.find(id)
+
+            // Show data
+            if(student) {
+                const data = {
+                    message: "Show data students",
+                    data: student
+                }
+                res.status(200).json(data)
+            }
+            else {
+                const data = {
+                    message: "Data students not found",
+                }
+                res.status(404).json(data)
+            }
+        }
+        catch (error) {
+            const data = {
+                message: "An error occurred while trying to show the student data",
+                error: error.message
+            }
+            res.status(500).json(data)
+        }
     }
 }
 
-// Membuat object dari class StudentController
+// Create object from StudentController class
 const object = new StudentController()
 
 // Export object

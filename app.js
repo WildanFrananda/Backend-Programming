@@ -2,17 +2,17 @@
 const express = require("express")
 const router = require("./routes/api")
 
-// Membuat object express
+// Create object express
 const app = express()
 
-// Menggunalan middleware
+// Using middleware
 app.use(express.json())
 app.use(express.urlencoded())
 
-// Menggunakan router
+// Using router
 app.use(router)
 
-// Menjalankan server
+// Running the server
 app.listen(3000, () => {
-    console.log("Server running on port 3000")
+    console.log("Server running on http://localhost:3000")
 })
